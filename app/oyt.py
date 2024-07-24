@@ -11,6 +11,19 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.formatters import TextFormatter
 import ollama
 
+def generate_response():
+    while True:
+        question = input("Question: ")
+        if question == 'bye':
+            break
+        response = ollama.chat(model = "mistral", messages = [
+            {
+                "role": "user",
+                "content": question
+            }
+        ])
+        print(f"Response: {response['message']['content']}")
+
 def generate_context(text_formatted):
     ollama.chat(model = "mistral", messages = [
         {
@@ -51,3 +64,5 @@ if __name__ == "__main__":
         
         print("Transcript has been saved successfully!")
         generate_context(text_formatted)
+        print("You can now start questioning the model. You can exit any time by typing 'bye'.")
+        generate_response()
