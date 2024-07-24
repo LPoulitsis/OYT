@@ -57,6 +57,11 @@ if __name__ == "__main__":
 
         video_id = input("Enter a video ID (or press 'x' to exit): ")
         
+        # Check if video_id is a valid YouTube video ID
+        if len(video_id) != 11:
+            print("Invalid video ID. Please try again.")
+            continue
+        
         if video_id == 'x':
             break
         
