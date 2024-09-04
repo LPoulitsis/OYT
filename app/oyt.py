@@ -1,5 +1,5 @@
 # Author: Lefteris Poulitsis
-# Last Updated: 24/07/2024
+# Last Updated: 04/09/2024 - DD/MM/YYYY
 
 """
 This program is a chatbot that generates responses based on a video transcript from YouTube.
