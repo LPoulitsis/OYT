@@ -78,9 +78,9 @@ if __name__ == "__main__":
     logo = f"""
   {colored("___", "white")}{colored("__   __", "red")}{colored("_____", "yellow")}
  {colored("/ _ \\", "white")} {colored("\\ / /", "red")}{colored("_   _|", "yellow")}
-{colored("| | | \\", "white")}{colored("V /", "red")}  {colored("| |", "yellow")}
+{colored("| | | \\", "white")} {colored("V /", "red")}  {colored("| |", "yellow")}
 {colored("| |_| |", "white")}{colored("| |", "red")}   {colored("| |", "yellow")}
-{colored(" \\___/", "white")}{colored("|_|", "red")}   {colored("|_|", "yellow")}  
+{colored(" \\___/", "white")} {colored("|_|", "red")}   {colored("|_|", "yellow")}  
     """    
     
     print(colored(logo, "red"))
@@ -100,6 +100,10 @@ This chatbot generates responses based on a video transcript from YouTube.\n""")
             continue
         
         text_formatted = format_video_transcript(video_id)
+        
+        # Write the transcript to a file
+        with open("transcript.txt", "w") as file:
+            file.write(text_formatted)
         
         if text_formatted:
             print(colored("Transcript has been saved successfully!", "green"))
