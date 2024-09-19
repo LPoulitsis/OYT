@@ -13,6 +13,11 @@ import ollama
 from termcolor import colored
 from typing import List, Tuple, Dict, Optional
 
+"""
+_summary_ : This function generates responses based on the user's questions and the conversation history.
+_conversation_history_ : A list of dictionaries containing the conversation history.
+_return_ : None
+"""
 def generate_response(conversation_history: List[Dict[str, str]]) -> None:
     while True:
         question = input(colored("Question: ", "green"))
@@ -28,6 +33,11 @@ def generate_response(conversation_history: List[Dict[str, str]]) -> None:
         conversation_history.append({"role": "assistant", "content": response_text})
         print(f"{colored('Response:', 'blue')} {response_text}\n")
 
+"""
+_summary_ : This function generates a context based on the formatted transcript.
+_text_formatted_ : A formatted string containing the video transcript.
+_return_ : A tuple containing the context response and the conversation history.
+"""
 def generate_context(text_formatted: str) -> Tuple[str, List[Dict[str, str]]]:
     messages = [
         {
@@ -65,6 +75,11 @@ def generate_context(text_formatted: str) -> Tuple[str, List[Dict[str, str]]]:
         context_response = f"Error in context generation: {e}"
     return context_response, messages
 
+"""
+_summary_ : This function fetches the transcript of a YouTube video and formats it.
+_video_id_ : The ID of the YouTube video.
+_return_ : The formatted transcript as a string or None if an error occurs.    
+"""
 def format_video_transcript(video_id: str) -> Optional[str]:
     try:
         transcript = YouTubeTranscriptApi.get_transcript(video_id)
@@ -74,7 +89,10 @@ def format_video_transcript(video_id: str) -> Optional[str]:
         print(colored(f"Error fetching transcript: {e}", "red"))
         return None
 
-if __name__ == "__main__":
+"""
+_summary_ : The main function of the program.
+"""
+def main():
     logo = f"""
   {colored("___", "white")}{colored("__   __", "red")}{colored("_____", "yellow")}
  {colored("/ _ \\", "white")} {colored("\\ / /", "red")}{colored("_   _|", "yellow")}
@@ -115,3 +133,6 @@ This chatbot generates responses based on a video transcript from YouTube.\n""")
             generate_response(conversation_history)
         else:
             print(colored("Failed to process the transcript. Please try with a different video ID.", "red"))
+
+if __name__ == "__main__":
+    main()
